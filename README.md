@@ -45,9 +45,9 @@ public class Star06 {
 
 #### 2.1.3 Questions
 * **Question 1:** If the initialization i = 1 is changed to i = 0 without changing the condition, how many characters are printed when n = 5? Explain.
-  * **Answer:** -------
+  * **Answer:** If i starts at 0 and the condition stays i <= n, the loop prints a star for each value from 0 through 5 when n is 5. That is 6 values, so 6 stars are printed.
 * **Question 2:** If the condition i <= n is changed to i < n, how many times does the loop run when n = 5? Why is the result different?  
-  * **Answer:** --------
+  * **Answer:** With i starting at 0 and the condition i < n, the loop runs 5 times for n = 5, with i taking values 0 through 4. It differs because < stops before i reaches 5, while <= includes 5 and runs one extra time.
 * **Question 3:** Predict the output of the following code fragment when n = 9, then verify it by replacing the FOR loop in your program and running it.
   ```
   for (int i = 2; i <= n; i += 2) { 
@@ -110,15 +110,15 @@ public class Triangle06 {
         System.out.print("Enter the value of n = "); 
         int n = sc.nextInt(); 
  
-        int i = 0; 
-        while (i <= n) { 
-            System.out.print("[i=" + i + "] ");   // temporary debug
+        int i = n; 
+        while (i > 0) { 
             int j = 0; 
             while (j < i) { 
                 System.out.print("*"); 
                 j++; 
             } 
-            i++; 
+            System.out.println(); 
+            i--; 
         } 
         sc.close(); 
     } 
@@ -217,8 +217,7 @@ public class GroupScore06 {
 The following is a list of tasks performed on this Jobsheet:
 
 ### Task 1:  Nested Number Pattern 
-
-    Write a program that prints a number pattern from 1 up to the row number. Enter an integer n (n is at least 1). The first row prints 1, the second row prints 1 2, and so on up to row n. After the pattern is complete, display the total number of digits that have been printed. Save the file with the name: Task1StudentNo.java. For n = 5:
+Write a program that prints a number pattern from 1 up to the row number. Enter an integer n (n is at least 1). The first row prints 1, the second row prints 1 2, and so on up to row n. After the pattern is complete, display the total number of digits that have been printed. Save the file with the name: Task1StudentNo.java. For n = 5:
     
       ```
       Enter the value of n = 5 
@@ -231,13 +230,30 @@ The following is a list of tasks performed on this Jobsheet:
       ```
 
  
-- [x] **Task 2:** Refer to the following flowchart!
+### Task 2: Multiplication Table
+Write a program that displays a multiplication table of size n × n using nested FOR or WHILE 
+loops. The value of n is at least 3. Each position displays the product of its row number and 
+column number. Arrange the spacing so that the output is neat, then display the sum of all 
+the numbers in the table. Save the program with the file name: Task2StudentNo.java. 
+For n = 4: 
+```
+Enter the value of n = 4 
+    1  2  3  4 
+    2  4  6  8
+    3  6  9 12 
+    4  8 12 16 
+Total of all numbers: 100
+```
 
-- [x] **Task 1:**  tickets, the customer receives a 15% discount. 
-      
-![](/flowchart.png)
-
-A parking lot operator wants to create a program to calculate the total parking fees of several vehicles. The parking rate is Rp 3,000 per hour for cars and Rp 2,000 per hour for motorcycles. The program keeps asking for input as long as the input is not 0. Implement the flowchart as a Java program! 
+### Task 3: Sales Recap for Several Stores 
+A shopping center has several stores. Each store serves a number of customers on the same day, and each customer buys several items. The program asks for the number of stores, then the number of customers at each store, and the number of items bought by each customer. Calculate and display the total number of customers and the total number of items for each store, the total number of items across all stores, and the number of the store with the most items. If several stores share the highest value, display the store with the smallest number. Save the program with the file name: Task3StudentNo.java. 
+Requirements: the number of stores is at least 1. The number of customers and the number of items per customer may be 0, but must not be negative. Use nested loops. The data does not need to be stored one by one; it is sufficient to accumulate it into the total variables. Example: Store 1 has 2 customers who bought 3 and 2 items; Store 2 has 3 customers who bought 1, 4, and 2 items. The expected summary is: 
+```
+Store 1 - customers: 2, total items: 5 
+Store 2 - customers: 3, total items: 7 
+Total items across all stores: 12 
+Store with the most items: 2 
+```
 
 ### 3.1 Task 1 Code Implementation
 
@@ -312,6 +328,10 @@ public class motorcycle {
     }
 }
 ```
+![](/parking.png)
+
+### 3.3 Task 3 Code Implementation
+
 ![](/parking.png)
 
 ---
