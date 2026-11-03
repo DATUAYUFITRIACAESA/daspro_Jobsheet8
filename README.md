@@ -106,7 +106,7 @@ public class Rectangle06 {
 * **Question 5:** Modify the program so that the printed character is #, then commit and push the changes to GitHub.
   * **Answer:**
 
-![](/rectangle#.png)
+![Example Output](/rectangle#.png)
 
 ### 2.3 Experiment 3: Debugging a Star Triangle – Nested WHILE
 
