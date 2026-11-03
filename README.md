@@ -56,169 +56,72 @@ public class Star06 {
   ```
   * **Answer:** ----------
 * **Question 4:** Explain why changing the increment i++ to i-- (with the condition still i <= n) makes the loop run endlessly, so that it does not stop in a reasonable time for positive n. Do not run that version; if it has already started running, stop the program by pressing Ctrl + C in the terminal. 
-  * **Answer:** 
-```java
-import java.util.Scanner;
-
-public class SiakadFor06 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        double score, highest = 0, lowest = 100;
-        int passCount = 0, failCount = 0;
-        for (int i = 1; i <= 10; i++) { 
-            System.out.print("Enter score for student " + i + ": "); 
-            score = sc.nextDouble(); 
-            if (score > highest) { 
-                highest = score; 
-            } 
-            if (score < lowest) { 
-                lowest = score; 
-            } 
-            if (score >= 60) {
-                passCount++;
-            } else {
-                failCount++;
-            }
-        } 
-        System.out.println("Highest score: " + highest); 
-        System.out.println("Lowest score: " + lowest); 
-        System.out.println("Number of students who pass: " + passCount);
-        System.out.println("Number of students who fail: " + failCount);
-    }
-}
-```
-![](/runCode.png)
+  * **Answer:** -----------
 
 ---
 
-### 2.2  Experiment 2: Student Grades Case Study in SIAKAD – WHILE Loop
+### 2.2  Experiment 2: Rectangle Star Pattern (Nested FOR)
 
 #### 2.2.1 Java Code
 ```java
-import java.util.Scanner;
+import java.util.Scanner; 
 
-public class siakadwhile06 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        double score;
-        int studentCount, i=0;
-        
-        System.out.print("Enter the number of students: "); 
-        studentCount = sc.nextInt();
+public class Rectangle06 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Enter the number of rows: "); 
+        int rows = sc.nextInt(); 
+        System.out.print("Enter the number of columns: "); 
+        int columns = sc.nextInt(); 
 
-        while (i < studentCount) { 
-            System.out.print("Enter score for student " + (i + 1) + ": "); 
-            score = sc.nextInt(); 
- 
-            if (score < 0 || score > 100) { 
-                System.out.println("Invalid score. Please enter a valid score!"); 
-                continue; 
+        for (int i = 1; i <= rows; i++) {    // outer loop: rows     
+            for (int j = 1; j <= columns; j++) {   // inner loop: columns 
+                System.out.print("*"); 
             } 
- 
-            if (score > 80 && score <= 100) { 
-                System.out.println("The grade of student " + (i + 1) + " is A"); 
-            } else if (score > 73 && score <= 80) { 
-                System.out.println("The grade of student " + (i + 1) + " is B+"); 
-            } else if (score > 65 && score <= 73) { 
-                System.out.println("The grade of student " + (i + 1) + " is B"); 
-            } else if (score > 60 && score <= 65) { 
-                System.out.println("The grade of student " + (i + 1) + " is C+"); 
-            } else if (score > 50 && score <= 60) { 
-                System.out.println("The grade of student " + (i + 1) + " is C"); 
-            } else if (score > 39 && score <= 50) { 
-                System.out.println("The grade of student " + (i + 1) + " is D"); 
-            } else { 
-                System.out.println("The grade of student " + (i + 1) + " is E"); 
-            } 
-            i++; 
-        }
-    }
+            System.out.println();    // new line              
+        } 
+    } 
 }
 ```
 ![Example Image of Experiment 2 Output](/siakadwhile.png)
 
-#### 2.2.2 Verification of Experimental Results
-
-Compare the output of your program with the following figure:
-
-```
-Enter the number of students: 5 
-Enter score for student 1: 85 
-The grade of student 1 is A 
-Enter score for student 2: 63
-The grade of student 2 is C+ 
-Enter score for student 3: 101 
-Invalid score. Please enter a valid score! 
-Enter score for student 3: 23 
-The grade of student 3 is E 
-Enter score for student 4: -15 
-Invalid score. Please enter a valid score! 
-Enter score for student 4: 70 
-The grade of student 4 is B 
-Enter score for student 5: 55 
-The grade of student 5 is C
-```
-![](/trycode.png)
 
 #### 2.2.3 Questions
-* **Question 1:** IIn the following code snippet, determine the meaning and purpose of the following syntax:
-```
-if (score < 0 || score > 100) { 
-System.out.println("Invalid score. Please enter a valid score!"); 
-continue; 
-}
-```
-  * **Answer:**
-    The syntax if (score < 0 || score > 100) { System.out.println("Invalid score. Please enter a valid score!"); continue; } means: if the score is less than 0 or greater than 100, it is invalid, so the program prints an error message and immediately skips the rest of the current loop iteration using continue. Its purpose is to prevent invalid input from being processed and to force the user to enter a correct score before continuing to the next student. The expression in part:
-    
-    (a) is score < 0 || score > 100, which means “score is below 0 or above 100,”
-    
-    (b) continue tells the loop to stop the current iteration and go back to the loop condition.
-* **Question 2:** Why is the i++ statement written at the end of the WHILE loop? What happens if it is written at the beginning of the WHILE loop?
-  * **Answer:**
-    The i++ statement is written at the end of the while loop so that each time a valid student score is entered and processed, the counter increases by 1. This keeps track of how many students have already been handled and ensures the loop eventually stops when i reaches studentCount. If i++ were written at the beginning of the loop, the loop would skip the first student because i would increase before checking or processing the score, causing the program to count incorrectly and possibly stop too early.
-* **Question 3:** If the number of students entered is 19, how many times will the WHILE loop run?  
-  * **Answer:**
-    If the number of students entered is 19, the while loop will run 19 times, because the loop condition is while (i < studentCount), so it repeats until i reaches 19. Each valid student input increases i by 1, and the loop stops when i becomes 19.
-* **Question 4:** Modify the program so that, if a student receives grade A, the program displays an 
-additional message “Well done, keep up the good work!”  
-  * **Answer:**
-    ![](/modifiedcode.png)
+* **Question 1:** Explain the function of the variables i and j in the program.
+  * **Answer:** ------------
+* **Question 2:** How many times are the outer loop, the inner loop, and the statement print("*") executed for rows = 4 and columns = 7? 
+  * **Answer:** --------------
+* **Question 3:** What happens if the bounds of the outer and inner loops are swapped (the outer loop uses columns and the inner loop uses rows)? Use rows = 3 and columns = 6 to explain. 
+  * **Answer:** ----------
+* **Question 4:** Explain the effect of removing System.out.println(); after the inner loop.  
+  * **Answer:** -------------
+* **Question 5:** Modify the program so that the printed character is #, then commit and push the changes to GitHub.
+  * **Answer:** -------------
 
-### 2.3 Experiment 3: Café Transaction Case Study – DO-WHILE Loop
+### 2.3 Experiment 3: Debugging a Star Triangle – Nested WHILE
 
 #### 2.3.1 Java Code
 ```java
-import java.util.Scanner;
-
-public class cafeDoWhile06 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        int coffee, tea, bread, totalPrice;
-        int coffeePrice = 12000, teaPrice = 7000, breadPrice = 20000;
-        String customerName;
-        do { 
-            System.out.print("Enter customer name (type 'cancel' to exit): "); 
-            customerName = sc.nextLine(); 
-            if (customerName.equalsIgnoreCase("cancel")) { 
-                System.out.println("Transaction canceled."); 
-                break; 
-            } 
-            System.out.print("Coffee quantity: "); 
-            coffee = sc.nextInt(); 
-            System.out.print("Tea quantity: "); 
-            tea = sc.nextInt(); 
-            System.out.print("Bread quantity: "); 
-            bread = sc.nextInt(); 
-            totalPrice = (coffee * coffeePrice) + (tea * teaPrice) + (bread * breadPrice); 
-            System.out.println("Total amount to pay: Rp " + totalPrice); 
-            sc.nextLine(); 
-        } while (true); 
+import java.util.Scanner; 
  
-        System.out.println("All transactions completed."); 
-        
-    }
+public class Triangle06 { 
+    public static void main(String[] args) { 
+        Scanner sc = new Scanner(System.in); 
+        System.out.print("Enter the value of n = "); 
+        int n = sc.nextInt(); 
+ 
+        int i = 0; 
+        while (i <= n) { 
+            System.out.print("[i=" + i + "] ");   // temporary debug
+            int j = 0; 
+            while (j < i) { 
+                System.out.print("*"); 
+                j++; 
+            } 
+            i++; 
+        } 
+        sc.close(); 
+    } 
 }
 ```
 
@@ -227,14 +130,85 @@ public class cafeDoWhile06 {
 ![Example Image of Experiment 3 Output](/coffeeCust.png)
 
 #### 2.3.3 Questions
-* **Question 1:** In this DO-WHILE loop, if the first customer name entered is “cancel”, how many times is the loop executed?
-  * **Answer:** The loop runs once. A do-while loop executes its body before checking the condition. Since the first name is “cancel,” the break statement exits the loop during that first execution.
-* **Question 2:** State the stopping condition used in this DO-WHILE loop! 
-  * **Answer:** The loop’s condition is while (true), which is always true. In practice, the loop stops when the customer enters “cancel” and the break statement runs.
-* **Question 3:** What is the function of using the value true in the DO-WHILE condition? 
-  * **Answer:** true makes the loop repeat indefinitely unless it is exited another way, such as with the break statement.
-* **Question 4:**Why does this DO-WHILE loop still run even though it has no initialization and update components?   
-  * **Answer:** A do-while loop does not require initialization or update components like a for loop. It executes its body, checks its condition, and repeats while the condition is true. Here, the loop is controlled by while (true) and exits through break when the customer enters “cancel”.
+* **Question 1:** Identify the mismatches in the initial output, and at least two fixes needed to produce a nested triangle pattern.
+  * **Answer:** ------------
+* **Question 2:** Explain the roles of the variables i and j. Why must the value of j be reset to 0 in every iteration of the outer loop? What happens if j is not reset? 
+  * **Answer:** ------------
+* **Question 3:** Explain the changes to the initialization, the condition, and the update of the outer loop that are needed to form the inverted triangle. 
+  * **Answer:** -------------------
+
+### 2.4 Experiment 4: Case Study of Group Project Scores
+
+#### 2.4.1 Java Code
+```java
+import java.util.Scanner; 
+
+public class GroupScore06 { 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of groups : "); 
+        int numGroups = sc.nextInt(); 
+        System.out.print("Enter the number of graders: "); 
+        int numGraders = sc.nextInt(); 
+ 
+        if (numGroups <= 0 || numGraders <= 0) { 
+            System.out.println("Groups and graders must be > 0."); 
+        } else { 
+            int groupNo = 1;                   // outer loop counter 
+            double highestAverage = -1;        // -1: the first group is recorded 
+            int bestGroup = 0; 
+
+            while (groupNo <= numGroups) { 
+                System.out.println("Group " + groupNo); 
+                double totalScore = 0; 
+ 
+                for (int j = 1; j <= numGraders; j++) { 
+                    int score; 
+                    do { 
+                        System.out.print("  Score from Grader " + j + ": "); 
+                        score = sc.nextInt(); 
+                        if (score < 0 || score > 100) { 
+                            System.out.println("  Score must be 0-100. Retry!"); 
+                        } 
+                    } while (score < 0 || score > 100); 
+                    totalScore += score; 
+                }  
+ 
+                double averageScore = totalScore / numGraders; 
+                System.out.println("Group " + groupNo 
+                        + ": average score = " + averageScore); 
+                if (averageScore > highestAverage) {
+                    highestAverage = averageScore;
+                    bestGroup = groupNo;
+                }
+ 
+                groupNo++; 
+            } 
+            System.out.println("==============================");
+            System.out.println("Best group          : " + bestGroup);
+            System.out.println("Highest average     : " + highestAverage);
+        } 
+        sc.close(); 
+    } 
+} 
+```
+
+#### 2.4.2 Screenshot Output
+
+![Example Image of Experiment 3 Output](/coffeeCust.png)
+
+#### 2.4.3 Questions
+* **Question 1:** Why must totalScore be reset inside the outer loop, but highestAverage must not be reset for each group? 
+  * **Answer:** ------------
+* **Question 2:** For 3 groups and 2 graders (without any invalid input), how many times is the body of the FOR loop executed in total? 
+  * **Answer:** ------------
+* **Question 3:** What happens if totalScore is declared as int and the average is calculated using integer division? Give an example of values.
+  * **Answer:** -------------------
+* **Question 4:** Why is highestAverage given the initial value -1 rather than 0? Give an example of input that produces a wrong result if the initial value were 0.
+  * **Answer:** -------------------
+* **Question 5:** This program has three levels of loops. Name each type of loop and its role.
+  * **Answer:** -------------------
+
 
 ---
 
@@ -242,18 +216,24 @@ public class cafeDoWhile06 {
 
 The following is a list of tasks performed on this Jobsheet:
 
-- [x] **Task 1:** A cinema manager wants to create a program to calculate the total ticket sales in one 
-day. Tickets are sold at Rp 50,000 per ticket. The program must calculate the total number 
-of tickets sold and the total ticket sales revenue for the day, subject to the following rules:
+### Task 1:  Nested Number Pattern 
 
-    • If a customer buys more than 4 tickets, the customer receives a 10% discount. 
+    Write a program that prints a number pattern from 1 up to the row number. Enter an integer n (n is at least 1). The first row prints 1, the second row prints 1 2, and so on up to row n. After the pattern is complete, display the total number of digits that have been printed. Save the file with the name: Task1StudentNo.java. For n = 5:
+    
+      ```
+      Enter the value of n = 5 
+        1 
+        1 2 
+        1 2 3 
+        1 2 3 4 
+        1 2 3 4 5 
+        Total numbers printed: 15
+      ```
 
-    • If a customer buys more than 10 tickets, the customer receives a 15% discount. 
-
-    • If the ticket quantity entered is invalid (negative), the program ignores the input and 
-      asks for it to be re-entered.
-      
+ 
 - [x] **Task 2:** Refer to the following flowchart!
+
+- [x] **Task 1:**  tickets, the customer receives a 15% discount. 
       
 ![](/flowchart.png)
 
