@@ -104,7 +104,8 @@ public class Rectangle06 {
 * **Question 4:** Explain the effect of removing System.out.println(); after the inner loop.  
   * **Answer:** Without System.out.println(); after the inner loop, the program won’t move to a new line after printing each row. All asterisks will appear together on one line, forming a continuous sequence of rows × columns stars.
 * **Question 5:** Modify the program so that the printed character is #, then commit and push the changes to GitHub.
-  * **Answer:** ![](/rectangle#.png)
+  * **Answer:**
+    ![](/rectangle#.png)
 
 ### 2.3 Experiment 3: Debugging a Star Triangle – Nested WHILE
 
