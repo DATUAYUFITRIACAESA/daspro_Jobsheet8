@@ -41,7 +41,8 @@ public class Star06 {
 
 #### 2.1.2 Screenshot Output
 
-![Example Image of Experiment 1 Output](/StudentScore.png)
+![Example Image of Experiment 1 Output](/Star06_n=5.png)
+![](/Star06_n=3&7.png)
 
 #### 2.1.3 Questions
 * **Question 1:** If the initialization i = 1 is changed to i = 0 without changing the condition, how many characters are printed when n = 5? Explain.
@@ -83,7 +84,7 @@ public class Rectangle06 {
     } 
 }
 ```
-![Example Image of Experiment 2 Output](/siakadwhile.png)
+![Example Image of Experiment 2 Output](/rectangleOutput.png)
 
 
 #### 2.2.3 Questions
@@ -127,7 +128,7 @@ public class Triangle06 {
 
 #### 2.3.2 Screenshot Output
 
-![Example Image of Experiment 3 Output](/coffeeCust.png)
+![Example Image of Experiment 3 Output](/triangleOutput.png)
 
 #### 2.3.3 Questions
 * **Question 1:** Identify the mismatches in the initial output, and at least two fixes needed to produce a nested triangle pattern.
@@ -195,7 +196,7 @@ public class GroupScore06 {
 
 #### 2.4.2 Screenshot Output
 
-![Example Image of Experiment 3 Output](/coffeeCust.png)
+![Example Image of Experiment 3 Output](/groupScoreOutput.png)
 
 #### 2.4.3 Questions
 * **Question 1:** Why must totalScore be reset inside the outer loop, but highestAverage must not be reset for each group? 
