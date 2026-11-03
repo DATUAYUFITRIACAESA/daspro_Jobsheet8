@@ -312,7 +312,7 @@ public class Task106 {
     }
 }
 ```
-![](/ticketSaler.png)
+![](/task1.png)
 
 ### 3.2 Task 2 Code Implementation
 ```java
@@ -343,7 +343,7 @@ public class Task206 {
     }
 }
 ```
-![](/parking.png)
+![](/task2.png)
 
 ### 3.3 Task 3 Code Implementation
 ```java
@@ -408,10 +408,10 @@ public class Task306 {
 
 ```
 
-![](/parking.png)
+![](/task3.png)
 
 ---
 
 ## 4: Conclusion
 
-These programs demonstrate how loops and conditional
+In this worksheet, I learned how to use for, while, and do-while loops to repeat instructions and how nested loops can handle rows, columns, and groups of data. The exercises showed that loop initialization, conditions, and updates determine how many times a loop runs and what it prints. I also practiced resetting variables at the correct point, validating input, and accumulating totals. These concepts were applied to create number patterns, multiplication tables, and a sales summary for several stores.
