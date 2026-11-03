@@ -55,10 +55,11 @@ public class Star06 {
   System.out.print(i + " "); 
   } 
   ```
-  * **Answer:** ----------
+  * **Answer:**
+![](/Star06_n=9.png)
 * **Question 4:** Explain why changing the increment i++ to i-- (with the condition still i <= n) makes the loop run endlessly, so that it does not stop in a reasonable time for positive n. Do not run that version; if it has already started running, stop the program by pressing Ctrl + C in the terminal. 
-  * **Answer:** -----------
-
+  * **Answer:** If the loop starts with i = 1 and keeps the condition i <= n, then for positive n the condition is initially true. Changing i++ to i-- makes i smaller each iteration, so it never moves toward being greater than n; the loop keeps running and printing.
+In Java, int eventually overflows, so it is not literally infinite: after billions of iterations, i wraps around and the condition may become false. But it won’t stop in a reasonable time. I did not run that version.
 ---
 
 ### 2.2  Experiment 2: Rectangle Star Pattern (Nested FOR)
@@ -89,13 +90,16 @@ public class Rectangle06 {
 
 #### 2.2.3 Questions
 * **Question 1:** Explain the function of the variables i and j in the program.
-  * **Answer:** ------------
+  * **Answer:** In Rectangle06.java, i counts the rows in the outer loop, while j counts the columns in the inner loop. For each value of i (each row), j runs through all the columns, printing the row’s contents. Then j resets for the next row.
 * **Question 2:** How many times are the outer loop, the inner loop, and the statement print("*") executed for rows = 4 and columns = 7? 
-  * **Answer:** --------------
+  * **Answer:** For rows = 4 and columns = 7:
+                ~ The outer loop runs 4 times.
+                ~ The inner loop runs 7 times per outer-loop iteration, or 28 times total.
+                ~ print("*") executes 28 times.
 * **Question 3:** What happens if the bounds of the outer and inner loops are swapped (the outer loop uses columns and the inner loop uses rows)? Use rows = 3 and columns = 6 to explain. 
-  * **Answer:** ----------
+  * **Answer:** With rows = 3 and columns = 6, swapping the bounds makes the outer loop run 6 times and the inner loop 3 times per outer iteration. The output becomes 6 rows of 3 asterisks. That’s still 18 asterisks total, but the rectangle’s dimensions are reversed.
 * **Question 4:** Explain the effect of removing System.out.println(); after the inner loop.  
-  * **Answer:** -------------
+  * **Answer:** Without System.out.println(); after the inner loop, the program won’t move to a new line after printing each row. All asterisks will appear together on one line, forming a continuous sequence of rows × columns stars.
 * **Question 5:** Modify the program so that the printed character is #, then commit and push the changes to GitHub.
   * **Answer:** -------------
 
