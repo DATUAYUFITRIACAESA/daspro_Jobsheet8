@@ -93,15 +93,18 @@ public class Rectangle06 {
   * **Answer:** In Rectangle06.java, i counts the rows in the outer loop, while j counts the columns in the inner loop. For each value of i (each row), j runs through all the columns, printing the row’s contents. Then j resets for the next row.
 * **Question 2:** How many times are the outer loop, the inner loop, and the statement print("*") executed for rows = 4 and columns = 7? 
   * **Answer:** For rows = 4 and columns = 7:
+    
                 ~ The outer loop runs 4 times.
                 ~ The inner loop runs 7 times per outer-loop iteration, or 28 times total.
                 ~ print("*") executes 28 times.
+
+    
 * **Question 3:** What happens if the bounds of the outer and inner loops are swapped (the outer loop uses columns and the inner loop uses rows)? Use rows = 3 and columns = 6 to explain. 
   * **Answer:** With rows = 3 and columns = 6, swapping the bounds makes the outer loop run 6 times and the inner loop 3 times per outer iteration. The output becomes 6 rows of 3 asterisks. That’s still 18 asterisks total, but the rectangle’s dimensions are reversed.
 * **Question 4:** Explain the effect of removing System.out.println(); after the inner loop.  
   * **Answer:** Without System.out.println(); after the inner loop, the program won’t move to a new line after printing each row. All asterisks will appear together on one line, forming a continuous sequence of rows × columns stars.
 * **Question 5:** Modify the program so that the printed character is #, then commit and push the changes to GitHub.
-  * **Answer:** -------------
+  * **Answer:** ![](/rectangle#.png)
 
 ### 2.3 Experiment 3: Debugging a Star Triangle – Nested WHILE
 
@@ -136,12 +139,23 @@ public class Triangle06 {
 
 #### 2.3.3 Questions
 * **Question 1:** Identify the mismatches in the initial output, and at least two fixes needed to produce a nested triangle pattern.
-  * **Answer:** ------------
-* **Question 2:** Explain the roles of the variables i and j. Why must the value of j be reset to 0 in every iteration of the outer loop? What happens if j is not reset? 
-  * **Answer:** ------------
-* **Question 3:** Explain the changes to the initialization, the condition, and the update of the outer loop that are needed to form the inverted triangle. 
-  * **Answer:** -------------------
+  * **Answer:** In the initial output, the debug text ([i=...]) appeared, the rows’ stars were printed on one line, and the loop built upward from zero stars instead of downward.
 
+To produce the nested descending triangle, make these fixes in Triangle06.java:
+
+1. Remove the debug System.out.print("[i=" + i + "] ");.
+2. Start i at n and decrement it each iteration, stopping when i reaches zero.
+3. Add System.out.println(); after the inner loop so each row starts on a new line.
+   
+* **Question 2:** Explain the roles of the variables i and j. Why must the value of j be reset to 0 in every iteration of the outer loop? What happens if j is not reset? 
+  * **Answer:** In Triangle06.java, i controls the current row’s star count, decreasing from n to 1. j counts the stars printed on that row. j must reset to 0 for every row so the inner loop can count and print that row’s stars from the beginning. If it isn’t reset, j retains its value after the first row; because it has already reached n, the inner-loop condition fails on later rows, so they print no stars.
+* **Question 3:** Explain the changes to the initialization, the condition, and the update of the outer loop that are needed to form the inverted triangle. 
+  * **Answer:** In Triangle06.java, the outer loop is set up to print an inverted triangle:
+
+                ~Initialization: Start i at n, so the first row has n stars.
+                ~Condition: Continue while i > 0, stopping after the row with one star.
+                ~Update: Decrease i with i-- after each row, making each next row shorter.
+    
 ### 2.4 Experiment 4: Case Study of Group Project Scores
 
 #### 2.4.1 Java Code
@@ -200,20 +214,24 @@ public class GroupScore06 {
 
 #### 2.4.2 Screenshot Output
 
-![Example Image of Experiment 3 Output](/groupScoreOutput.png)
+![Example Image of Experiment 4 Output](/groupScoreOutput.png)
 
 #### 2.4.3 Questions
 * **Question 1:** Why must totalScore be reset inside the outer loop, but highestAverage must not be reset for each group? 
-  * **Answer:** ------------
+  * **Answer:** In GroupScore06.java, totalScore is reset inside the outer loop because it should accumulate scores for only the current group. If it carried over, later groups’ averages would include earlier groups’ scores.
+highestAverage tracks the highest average across all groups, so it must retain its value between iterations. Resetting it for each group would lose the comparison with previous groups, preventing the program from reliably identifying the best group.
 * **Question 2:** For 3 groups and 2 graders (without any invalid input), how many times is the body of the FOR loop executed in total? 
-  * **Answer:** ------------
+  * **Answer:** The for loop body runs 6 times total: 2 graders × 3 groups.
 * **Question 3:** What happens if totalScore is declared as int and the average is calculated using integer division? Give an example of values.
-  * **Answer:** -------------------
+  * **Answer:** If totalScore and numGraders are both int, dividing them uses integer division and discards the fractional part. For example, scores of 80 and 81 total 161; 161 / 2 gives 80, not 80.5. Even if the result is assigned to a double, it becomes 80.0. Use totalScore / (double) numGraders to preserve the fraction.
 * **Question 4:** Why is highestAverage given the initial value -1 rather than 0? Give an example of input that produces a wrong result if the initial value were 0.
-  * **Answer:** -------------------
+  * **Answer:** highestAverage starts at -1 so the first group’s average is always greater than it, even if all scores are zero.
+If it started at 0, input with 1 group, 2 graders, and scores 0 and 0 would give an average of 0. Since 0 > 0 is false, the program would never record that group: bestGroup would remain 0, which is incorrect.
 * **Question 5:** This program has three levels of loops. Name each type of loop and its role.
-  * **Answer:** -------------------
-
+  * **Answer:**
+  1. Outer while loop (groupNo) — processes each group.
+  2. for loop (j) — collects one score from each grader for the current group.
+  3. Inner do-while loop (score) — validates each score and repeats the prompt until it is between 0 and 100.
 
 ---
 
@@ -265,38 +283,32 @@ Store with the most items: 2
 ```java
 import java.util.Scanner;
 
-public class ticketSale {
+public class Task106 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int TICKET_PRICE = 50000;
-        int customerCount, totalTickets = 0;
-        double totalRevenue = 0;
+        System.out.print("Enter the value of n = ");
+        int n = sc.nextInt();
 
-        System.out.print("Enter the number of customers: ");
-        customerCount = sc.nextInt();
+        if (n < 1) {
+            System.out.println("The value of n must be at least 1.");
+        } else {
+            long totalDigits = 0;
 
-        for (int i = 1; i <= customerCount; i++) {
-            int quantity;
-            do {
-                System.out.print("Enter the number of tickets for customer " + i + ": ");
-                quantity = sc.nextInt();
-                if (quantity < 0) {
-                    System.out.println("Invalid quantity. Please enter a non-negative number.");
+            for (int row = 1; row <= n; row++) {
+                for (int number = 1; number <= row; number++) {
+                    if (number > 1) {
+                        System.out.print(" ");
+                    }
+                    System.out.print(number);
+                    totalDigits += String.valueOf(number).length();
                 }
-            } while (quantity < 0);
-
-            double discountRate = 0;
-            if (quantity > 10) {
-                discountRate = 0.15;
-            } else if (quantity > 4) {
-                discountRate = 0.10;
+                System.out.println();
             }
 
-            totalTickets += quantity;
-            totalRevenue += quantity * TICKET_PRICE * (1 - discountRate);
+            System.out.println("Total numbers printed: " + totalDigits);
         }
-        System.out.println("Total tickets sold: " + totalTickets);
-        System.out.printf("Total ticket sales revenue: Rp %.0f%n", totalRevenue);
+
+        sc.close();
     }
 }
 ```
@@ -304,38 +316,97 @@ public class ticketSale {
 
 ### 3.2 Task 2 Code Implementation
 ```java
-import java.util.Scanner;
-
-public class motorcycle {
+public class Task206 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int type, duration, total = 0;
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        System.out.print("Enter the value of n = ");
+        int n = sc.nextInt();
 
-        do {
-            System.out.print("Enter vehicle type (1=Car, 2=Motorcycle, 0=Exit): ");
-            type = sc.nextInt();
+        if (n < 3) {
+            System.out.println("The value of n must be at least 3.");
+        } else {
+            long total = 0;
 
-            if (type == 1 || type == 2) {
-                System.out.print("Enter parking duration in hours: ");
-                duration = sc.nextInt();
-
-                if (type == 1) {
-                    total += duration * 3000;
-                } else {
-                    total += duration * 2000;
+            for (int row = 1; row <= n; row++) {
+                for (int column = 1; column <= n; column++) {
+                    int product = row * column;
+                    System.out.printf("%4d", product);
+                    total += product;
                 }
-            } else if (type != 0) {
-                System.out.println("Invalid vehicle type. Please enter 1, 2, or 0.");
+                System.out.println();
             }
-        } while (type != 0);
 
-        System.out.println("Total parking fee: Rp " + total);
+            System.out.println("Total of all numbers: " + total);
+        }
+
+        sc.close();
     }
 }
 ```
 ![](/parking.png)
 
 ### 3.3 Task 3 Code Implementation
+```java
+import java.util.Scanner;
+
+public class Task306 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int numStores;
+        do {
+            System.out.print("Enter the number of stores: ");
+            numStores = sc.nextInt();
+            if (numStores < 1) {
+                System.out.println("The number of stores must be at least 1.");
+            }
+        } while (numStores < 1);
+
+        long totalItemsAllStores = 0;
+        long mostItems = -1;
+        int storeWithMostItems = 0;
+
+        for (int store = 1; store <= numStores; store++) {
+            int numCustomers;
+            do {
+                System.out.print("Enter the number of customers at store " + store + ": ");
+                numCustomers = sc.nextInt();
+                if (numCustomers < 0) {
+                    System.out.println("The number of customers cannot be negative.");
+                }
+            } while (numCustomers < 0);
+
+            long totalItemsAtStore = 0;
+            for (int customer = 1; customer <= numCustomers; customer++) {
+                int itemsBought;
+                do {
+                    System.out.print("Enter the number of items bought by customer "
+                            + customer + " at store " + store + ": ");
+                    itemsBought = sc.nextInt();
+                    if (itemsBought < 0) {
+                        System.out.println("The number of items cannot be negative.");
+                    }
+                } while (itemsBought < 0);
+                totalItemsAtStore += itemsBought;
+            }
+
+            System.out.println("Store " + store + " - customers: " + numCustomers
+                    + ", total items: " + totalItemsAtStore);
+            totalItemsAllStores += totalItemsAtStore;
+
+            if (totalItemsAtStore > mostItems) {
+                mostItems = totalItemsAtStore;
+                storeWithMostItems = store;
+            }
+        }
+
+        System.out.println("Total items across all stores: " + totalItemsAllStores);
+        System.out.println("Store with the most items: " + storeWithMostItems);
+        sc.close();
+    }
+}
+
+```
 
 ![](/parking.png)
 
